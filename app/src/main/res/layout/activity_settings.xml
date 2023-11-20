@@ -1,0 +1,111 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="以下属性设置均需要关闭SELinux。如未关闭，请通过shell执行执行相应命令。下面开关说明括号内容为对应属性名。"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="全开"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bt_close"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="全关"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/bt_refresh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="刷新"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="APP开启MTE sync，重启应用生效(persist.arm64.memtag.app_default)"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/sw_app_mte"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="native开启MTE sync，重启进程生效(persist.arm64.memtag.default)"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/sw_native_mte"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/sw_native_mte"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="#000000" />
+
+
+
+    </LinearLayout>
+</ScrollView>

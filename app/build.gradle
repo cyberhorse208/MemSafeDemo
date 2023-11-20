@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.memsafe.demo"
+        minSdk 26
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+                //若没有targets，则默认只会编译so；若有targets，则需要将要编译的目标都写明
+                //根据targets后面的列表，到CMakeList.txt中找到对应的编译命令
+                targets "hello-mte", "nativetest"
+            }
+        }
+        aaptOptions {
+            //指定哪些类型文件要打包
+            //ignoreAssetsPattern '!*.txt:!*.so:!*debug:!*release:!*.a'
+        }
+
+        sourceSets{
+            main{
+                assets{
+                    // 指定要打入apk的assets文件目录
+                    srcDirs = [
+                            //cmake编译结果目录
+                            'build/intermediates/cmake/debug/obj/arm64-v8a',
+                            //从其他地方准备好的文件，不是本工程编译的
+                            //'src/main/assets'
+                    ]
+
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //指明native编译使用的cmakelist.txt文件
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.10.2'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+//    implementation 'androidx.appcompat:appcompat:1.6.1'
+//    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

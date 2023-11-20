@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_servicecmd"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="执行命令" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/edit_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="textLongMessage" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+        <Button
+            android:id="@+id/btn_nativemte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="native进程产生OOB/UAF" />
+
+        <Button
+            android:id="@+id/btn_localmte2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="APP产生OOB" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_localmte3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="APP产生UAF(直接访问地址)" />
+
+
+        <Button
+            android:id="@+id/btn_localmte4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:layout_marginStart="10dp"
+            android:text="APP产生UAF2(间接访问地址)" />
+
+    </LinearLayout>
+        <Button
+            android:id="@+id/btn_fdsan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="产生FDSan错误" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_ubsan_app"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="10sp"
+                android:text="APP产生UBSan错误(退出APP)" />
+
+            <Button
+                android:id="@+id/btn_ubsan_native"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="10sp"
+                android:layout_marginStart="10dp"
+                android:text="native进程产生UBSan错误（不退出APP）" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_selfhandle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="产生MTE错误且自定义信号处理" />
+
+        <Button
+            android:id="@+id/btn_nativememleak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="native内存泄露一次" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_javamemleak_activity_not_distroy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="java内存泄露（activity不被释放）一次" />
+
+
+        <Button
+            android:id="@+id/btn_javamemleak_resouce_not_distroy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:layout_marginStart="10dp"
+            android:text="java内存泄露(资源不被释放)一次" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_consume_java_mem_start"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="10sp"
+                android:text="消耗java内存-开始" />
+            <Button
+                android:id="@+id/btn_consume_java_mem_stop"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="10sp"
+                android:layout_marginStart="10dp"
+                android:text="消耗java内存-结束" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btn_getmtelevel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="MTE模式(0.1s刷新)" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/mtelevel_output"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="未知" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

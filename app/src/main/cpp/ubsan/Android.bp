@@ -1,0 +1,55 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "ubsandemo_defaults",
+    cflags: [
+    //加入以下编译选项，避免编译器报错，无法测试
+		"-Wno-integer-overflow",
+		"-Wno-shift-op-parentheses",
+		"-Wno-shift-count-overflow",
+
+        "-Wno-gcc-compat",
+        "-Wno-unused-argument",
+        "-Wno-unused-function",
+        "-Wno-nullability-completeness",
+        "-O0",
+        "-fno-finite-loops",
+        "-DANDROID_DEBUGGABLE=0",
+    //发生ubsan错误后，不做恢复，而是打log，然后abort；如果不要abort，就去掉此选项
+		"-fno-sanitize-recover=all",
+    ],
+
+    product_variables: {
+        debuggable: {
+            cflags: ["-UANDROID_DEBUGGABLE", "-DANDROID_DEBUGGABLE=1"],
+        }
+    },
+}
+
+cc_binary {
+    name: "ubsan-demo",
+    defaults: ["ubsandemo_defaults"],
+    srcs: ["ubsan-demo.cpp"],
+    static_libs: [
+
+    ],
+	sanitize: {
+        misc_undefined: [
+            "alignment",
+            "bounds",
+            "null",
+            "unreachable",
+            "integer",
+			"shift-base",
+			"shift-exponent",
+			"bool",
+			"return",
+			"vla-bound",
+        ],
+        diag: {
+            undefined : true
+        },
+    },
+}
